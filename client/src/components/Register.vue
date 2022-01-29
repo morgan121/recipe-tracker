@@ -1,26 +1,36 @@
 <template>
+  <div>
+    <b-navbar toggleable="lg" type="dark" sticky variant="info">
+      <b-navbar-brand>Registration</b-navbar-brand>
+    </b-navbar>
 
-  <v-layout column>
-    <v-flex xs6 offset-xs3>
-      <div class="white elevation-3">
-        <v-toolbar flat dense class="cyan" dark>
-          <v-toolbar-title>Register</v-toolbar-title>
-        </v-toolbar>
+    <b-container class="col-lg-3 col-lg-offset-4">
+      <br>
+      <b-form @submit="register">
+        <b-form-group>
+          <b-form-input
+            type="email"
+            v-model="email"
+            placeholder="Enter email"
+            required
+          ></b-form-input>
+        </b-form-group>
 
-        <div class="pl-4 pr-4 pt-2 pb-2">
-          <div class="error" v-html="error" />
-          <br>
-          <input type="email" name="email" placeholder="Enter your email" v-model="email"/>
-          <br>
-          <input type="password" name="password" placeholder="Enter your password"  v-model="password"/>
-          <br>
-          <br>
-          <v-btn class="cyan" @click="register">Register</v-btn>
-        </div>
-      </div>
-    </v-flex>
-  </v-layout>
+        <b-form-group>
+          <b-form-input
+            type="password"
+            v-model="password"
+            placeholder="Enter password"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <div class="error" v-html="error"></div>
+        <br>
+        <b-button type="dark" variant="info">Register</b-button>
+      </b-form>
+    </b-container>
 
+  </div>
 </template>
 
 <script>
@@ -35,27 +45,17 @@ export default {
     }
   },
   methods: {
-    // Async/await way
     async register () {
       try {
         await AuthenticationService.register({
           email: this.email,
-          password: this.password
+          password: this.password,
+          error: null
         })
       } catch (error) {
         this.error = error.response.data.error
       }
     }
-
-    // Promise way
-    // register () {
-    //   AuthenticationService.register({
-    //     email: this.email,
-    //     password: this.password
-    //   })
-    //     .then(response => console.log(response.data))
-    //     .catch(console.log)
-    // }
   }
 }
 </script>
@@ -64,5 +64,19 @@ export default {
 <style scoped>
 .error {
   color: red;
+}
+.col-centered{
+    margin: 0 auto;
+}
+.navbar {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  font-size: 100;
+}
+.navbar-brand {
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+  font-size: xx-large;
 }
 </style>
