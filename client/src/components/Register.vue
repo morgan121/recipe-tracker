@@ -1,13 +1,26 @@
 <template>
-  <div>
-    <h1>Register</h1>
 
-    <input type="email" name="email" placeholder="Enter your email" v-model="email"/>
-    <br>
-    <input type="password" name="password" placeholder="Enter your password"  v-model="password"/>
-    <br>
-    <button @click="register">Register</button>
-  </div>
+  <v-layout column>
+    <v-flex xs6 offset-xs3>
+      <div class="white elevation-3">
+        <v-toolbar flat dense class="cyan" dark>
+          <v-toolbar-title>Register</v-toolbar-title>
+        </v-toolbar>
+
+        <div class="pl-4 pr-4 pt-2 pb-2">
+          <div class="error" v-html="error" />
+          <br>
+          <input type="email" name="email" placeholder="Enter your email" v-model="email"/>
+          <br>
+          <input type="password" name="password" placeholder="Enter your password"  v-model="password"/>
+          <br>
+          <br>
+          <v-btn class="cyan" @click="register">Register</v-btn>
+        </div>
+      </div>
+    </v-flex>
+  </v-layout>
+
 </template>
 
 <script>
@@ -17,32 +30,39 @@ export default {
   data () {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: null
     }
   },
   methods: {
     // Async/await way
-    // async register () {
-    //   const response = await AuthenticationService.register({
+    async register () {
+      try {
+        await AuthenticationService.register({
+          email: this.email,
+          password: this.password
+        })
+      } catch (error) {
+        this.error = error.response.data.error
+      }
+    }
+
+    // Promise way
+    // register () {
+    //   AuthenticationService.register({
     //     email: this.email,
     //     password: this.password
     //   })
-    //   console.log(response.data)
+    //     .then(response => console.log(response.data))
+    //     .catch(console.log)
     // }
-
-    // Promise way (I like this one, but tutorial uses other one)
-    register () {
-      AuthenticationService.register({
-        email: this.email,
-        password: this.password
-      })
-        .then(response => console.log(response.data))
-        .catch(console.log)
-    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.error {
+  color: red;
+}
 </style>
