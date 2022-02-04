@@ -1,6 +1,6 @@
 <template>
   <b-card
-    header="Register"
+    header="Login"
     header-bg-variant="success"
     header-text-variant="white"
     style="max-width: 70rem;"
@@ -8,7 +8,7 @@
     body-class="text-center"
   >
     <br>
-    <b-form @submit="register">
+    <b-form @submit="login">
       <b-form-group>
         <b-form-input
           v-model="email"
@@ -32,7 +32,7 @@
       </b-form-group>
       <div class="error" v-html="error"></div>
       <br>
-      <b-button size="lg" type="dark" variant="success">REGISTER</b-button>
+      <b-button size="lg" type="dark" variant="success">LOGIN</b-button>
     </b-form>
   </b-card>
 </template>
@@ -49,9 +49,9 @@ export default {
     }
   },
   methods: {
-    async register () {
+    async login () {
       try {
-        await AuthenticationService.register({
+        await AuthenticationService.login({
           email: this.email,
           password: this.password
         })

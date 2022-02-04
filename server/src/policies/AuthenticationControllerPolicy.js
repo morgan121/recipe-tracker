@@ -20,7 +20,8 @@ module.exports = {
           break
         case 'password':
           res.status(400).send({
-            error: `
+            error: 
+            `
               The password provided failed to match the following rules:
               <br>
               1. It must contain ONLY the following: lower case, upper case and numbers
