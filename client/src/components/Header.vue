@@ -8,10 +8,19 @@
     </b-navbar-nav> -->
 
     <b-navbar-nav class="ms-auto">
-      <b-nav-item href="#" variant="sucess" @click="navigateTo({name: 'login'})">
+      <b-nav-item
+        v-if="!$store.state.isUserLoggedIn"
+        href="#"
+        variant="sucess"
+        @click="navigateTo({name: 'login'})">
         LOGIN
       </b-nav-item>
-      <b-nav-item href="#" variant="sucess" @click="navigateTo({name: 'register'})">
+
+      <b-nav-item
+        v-if="!$store.state.isUserLoggedIn"
+        href="#"
+        variant="sucess"
+        @click="navigateTo({name: 'register'})">
         SIGN UP
       </b-nav-item>
     </b-navbar-nav>
