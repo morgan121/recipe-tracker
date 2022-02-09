@@ -2,10 +2,14 @@
   <b-navbar fixed type="dark" sticky variant="success">
     <b-navbar-brand @click="navigateTo({name: 'root'})">RecipeTracker</b-navbar-brand>
 
-    <!-- TODO: implement this -->
-    <!-- <b-navbar-nav>
-      <b-button href="#" right>BROWSE</b-button>
-    </b-navbar-nav> -->
+    <b-navbar-nav>
+      <b-nav-item
+        href="#"
+        variant="sucess"
+        @click="navigateTo({name: 'recipes'})">
+        BROWSE
+      </b-nav-item>
+    </b-navbar-nav>
 
     <b-navbar-nav class="ms-auto">
       <b-nav-item
@@ -23,6 +27,14 @@
         @click="navigateTo({name: 'register'})">
         SIGN UP
       </b-nav-item>
+
+      <b-nav-item
+        v-if="$store.state.isUserLoggedIn"
+        href="#"
+        variant="sucess"
+        @click="logout">
+        LOG OUT
+      </b-nav-item>
     </b-navbar-nav>
   </b-navbar>
 </template>
@@ -32,6 +44,13 @@ export default {
   methods: {
     navigateTo (route) {
       this.$router.push(route).catch(() => {})
+    },
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'root'
+      })
     }
   }
 }

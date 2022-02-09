@@ -1,12 +1,5 @@
 <template>
-  <b-card
-    header="Login"
-    header-bg-variant="success"
-    header-text-variant="white"
-    style="max-width: 70rem;"
-    align="center"
-    body-class="text-center"
-  >
+  <panel title="Login">
     <br>
     <b-form @submit="login">
       <b-form-group>
@@ -34,11 +27,12 @@
       <br>
       <b-button size="lg" type="dark" variant="success">LOGIN</b-button>
     </b-form>
-  </b-card>
+  </panel>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 
 export default {
   data () {
@@ -51,6 +45,7 @@ export default {
   methods: {
     async login () {
       try {
+        this.error = null
         const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
@@ -61,6 +56,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>

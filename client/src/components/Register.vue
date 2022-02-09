@@ -1,12 +1,5 @@
 <template>
-  <b-card
-    header="Register"
-    header-bg-variant="success"
-    header-text-variant="white"
-    style="max-width: 70rem;"
-    align="center"
-    body-class="text-center"
-  >
+  <panel title="Register">
     <br>
     <b-form @submit="register">
       <b-form-group>
@@ -35,11 +28,12 @@
       <br>
       <b-button size="lg" type="dark" variant="success">REGISTER</b-button>
     </b-form>
-  </b-card>
+  </panel>
 </template>
 
 <script>
 import AuthenticationService from '@/services/AuthenticationService'
+import Panel from '@/components/Panel'
 
 export default {
   data () {
@@ -63,6 +57,9 @@ export default {
         this.error = error.response.data.error
       }
     }
+  },
+  components: {
+    Panel
   }
 }
 </script>
