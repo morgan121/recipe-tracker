@@ -11,32 +11,21 @@
 </template>
 
 <script>
+import RecipesService from '@/services/RecipesService'
 import Panel from '@/components/Panel'
 
 export default {
-  data () {
-    return {
-      recipes: [
-        {
-          title: 'Tikka Masala',
-          author: 'Myself',
-          calories: '100 kJ'
-        },
-        {
-          title: 'Chicken Salad',
-          author: 'Myself',
-          calories: '100 kJ'
-        },
-        {
-          title: 'Corn',
-          author: 'Myself',
-          calories: '100 kJ'
-        }
-      ]
-    }
-  },
   components: {
     Panel
+  },
+  data () {
+    return {
+      recipes: null
+    }
+  },
+  async mounted () {
+    // do a request to backend for all recipes
+    this.recipes = await RecipesService.index()
   }
 }
 </script>
