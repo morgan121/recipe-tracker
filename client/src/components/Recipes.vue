@@ -2,10 +2,9 @@
   <panel title="Recipes">
     <div
       v-for="recipe in recipes"
-      :key="recipe.title">
+      :key="recipe.recipe_id">
       {{recipe.title}} -
-      {{recipe.author}} -
-      {{recipe.calories}}
+      {{recipe.author}}
     </div>
   </panel>
 </template>
@@ -25,7 +24,7 @@ export default {
   },
   async mounted () {
     // do a request to backend for all recipes
-    this.recipes = await RecipesService.index()
+    this.recipes = (await RecipesService.index()).data
   }
 }
 </script>
