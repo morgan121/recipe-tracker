@@ -5,6 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
+    type: DataTypes.STRING,
     name: DataTypes.STRING,
     prep_time: DataTypes.INTEGER,
     cook_time: DataTypes.INTEGER
@@ -12,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   {
     classMethods: {
       associate: function(models){      
-        Subrecipe.belongsToMany(models.Recipe, { foreignKey: 'recipe_id', through: 'RecipeSubrecipe' })
-        Subrecipe.belongsToMany(models.Ingredients, { foreignKey: 'ingredient_id', through: 'SubrecipeIngredients' })
+        Subrecipe.belongsToMany(models.Recipe, { through: 'RecipeSubrecipe' })
+        Subrecipe.belongsToMany(models.Ingredients, { through: 'SubrecipeIngredients' })
       }
     }
   })

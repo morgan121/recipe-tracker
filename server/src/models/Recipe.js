@@ -5,10 +5,19 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     author: DataTypes.STRING,
-    difficulty: DataTypes.ENUM('Easy', 'Medium', 'Hard'),
-    meal_type: DataTypes.ENUM('Sweet', 'Savoury'),
+    difficulty: {
+      type: DataTypes.ENUM('Easy', 'Medium', 'Hard'),
+      allowNull: false
+    },
+    meal_type: {
+      type: DataTypes.ENUM('Main', 'Side', 'Dessert', 'Drink'),
+      allowNull: false
+    },
     recipe_image_url: DataTypes.STRING,
     recipe_url: DataTypes.STRING,
     notes: DataTypes.TEXT
@@ -16,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     classMethods: {
       associate: function(models){      
-        Recipe.hasMany(models.Subrecipe, { onDelete: "CASCADE", hooks: true})
+        Recipe.belongsToMany(models.Subrecipe, { through: 'RecipeSubrecipe' })
       }
     }
   })

@@ -1,4 +1,6 @@
 <template>
+  <panel title="Blank">
+  </panel>
 </template>
 
 <script>

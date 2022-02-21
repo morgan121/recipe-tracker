@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     classMethods: {
       associate: function(models){      
-        Ingredient.belongsToMany(models.Subrecipe, { foreignKey: 'subrecipe_id', through: 'SubrecipeIngredients' })
+        Ingredient.belongsToMany(models.Subrecipe, { through: 'SubrecipeIngredients' })
       }
     }
   })
