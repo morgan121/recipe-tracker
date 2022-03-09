@@ -69,7 +69,7 @@ export default {
   border-color: white;
   box-shadow: none !important;
 }
-input, button, select, optgroup, textarea {
+input, button, optgroup, textarea {
   display: none;
 }
 </style>

@@ -26,7 +26,7 @@
       </b-form-group>
       <div class="error" v-html="error"></div>
       <br>
-      <b-button size="lg" type="dark" variant="success">REGISTER</b-button>
+      <b-button size="lg" type="submit" variant="success">REGISTER</b-button>
     </b-form>
   </panel>
 </template>
@@ -48,6 +48,7 @@ export default {
   },
   methods: {
     async register () {
+      event.preventDefault()
       try {
         this.error = null
         const response = await AuthenticationService.register({

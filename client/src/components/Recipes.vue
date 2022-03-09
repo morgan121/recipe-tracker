@@ -7,7 +7,7 @@
       {{recipe.meal_type}}
     </div>
     <br>
-    <b-button size="create" type="dark" variant="success">NEW RECIPE</b-button>
+    <b-button @click="navigateTo({name: 'recipes-create'})" size="create" type="submit" variant="success">NEW RECIPE</b-button>
   </panel>
 </template>
 
@@ -22,6 +22,11 @@ export default {
   data () {
     return {
       recipes: null
+    }
+  },
+  methods: {
+    navigateTo (route) {
+      this.$router.push(route).catch(() => {})
     }
   },
   async mounted () {

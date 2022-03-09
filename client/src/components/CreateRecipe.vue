@@ -9,7 +9,7 @@
             :options="difficulty_options"
             class="mt-3"
           ></b-form-checkbox-group>
-          &nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <b-form-checkbox-group
             buttons
             v-model="recipe.meal_type"
@@ -53,7 +53,7 @@
       </div>
       <br>
       <div>
-        <b-button size="lg" type="dark" variant="success">CREATE RECIPE</b-button>
+        <b-button size="lg" type="submit" variant="success">CREATE RECIPE</b-button>
       </div>
     </div>
   </b-form>
@@ -93,9 +93,9 @@ export default {
   methods: {
     async create () {
       try {
-        alert('HERE', JSON.stringify(this.recipe))
+        event.preventDefault()
         await RecipesService.post(this.recipe)
-        // this.$router.push({name: 'recipes'}).catch(() => {})
+        this.$router.push({name: 'recipes'}).catch(() => {})
       } catch (err) {
         console.log(err)
       }
