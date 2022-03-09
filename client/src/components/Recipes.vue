@@ -4,7 +4,8 @@
       v-for="recipe in recipes"
       :key="recipe.recipe_id">
       {{recipe.title}} -
-      {{recipe.meal_type}}
+      {{recipe.meal_type}} -
+      {{recipe.difficulty}}
     </div>
     <br>
     <b-button @click="navigateTo({name: 'recipes-create'})" size="create" type="submit" variant="success">NEW RECIPE</b-button>
