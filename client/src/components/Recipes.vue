@@ -4,8 +4,10 @@
       v-for="recipe in recipes"
       :key="recipe.recipe_id">
       {{recipe.title}} -
-      {{recipe.author}}
+      {{recipe.meal_type}}
     </div>
+    <br>
+    <b-button size="create" type="dark" variant="success">NEW RECIPE</b-button>
   </panel>
 </template>
 

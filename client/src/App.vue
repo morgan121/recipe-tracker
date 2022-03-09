@@ -52,4 +52,24 @@ export default {
   margin-top: 25px;
   margin-bottom: 25px;
 }
+.form-textarea--text-field-textarea{
+  border-radius: 0;
+  border-width: 0px 0px 0px 0px;
+  font-size: 16px;
+  text-align: left;
+  letter-spacing: 0px;
+}
+.btn-secondary{
+  background-color: #198754 !important;
+  border-color: white;
+  box-shadow: none !important;
+}
+.btn-secondary.active{
+  background-color: #094429 !important;
+  border-color: white;
+  box-shadow: none !important;
+}
+input, button, select, optgroup, textarea {
+  display: none;
+}
 </style>

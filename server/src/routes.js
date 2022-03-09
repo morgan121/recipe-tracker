@@ -13,8 +13,8 @@ module.exports = (app) => {
 
   app.get('/recipes', 
     RecipesController.index
-  )  
+  )
   app.post('/recipes', 
     RecipesController.post
-  ) 
+  )
 }

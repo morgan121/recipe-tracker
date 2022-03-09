@@ -12,7 +12,7 @@ app.use(cors())
 
 require('./routes')(app)
 
-sequelize.sync() // add {force: true} in the sync() to clear out the db. DO NOT DO ON PROD
+sequelize.sync({force: false}) // add {force: true} in the sync() to clear out the db. DO NOT DO ON PROD
   .then(() => {
     app.listen(config.port)
     console.log(`Server started on ${config.port}`)

@@ -9,15 +9,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    author: DataTypes.STRING,
-    difficulty: {
-      type: DataTypes.ENUM('Easy', 'Medium', 'Hard'),
-      allowNull: false
-    },
-    meal_type: {
-      type: DataTypes.ENUM('Main', 'Side', 'Dessert', 'Drink'),
-      allowNull: false
-    },
+    difficulty: DataTypes.STRING,
+    meal_type: DataTypes.STRING,
     recipe_image_url: DataTypes.STRING,
     recipe_url: DataTypes.STRING,
     notes: DataTypes.TEXT
