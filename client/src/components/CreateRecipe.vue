@@ -8,6 +8,8 @@
             v-model="recipe.difficulty"
             :options="difficulty_options"
             class="mt-3"
+            button-variant="success"
+            checked
           ></b-form-checkbox-group>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <b-form-checkbox-group
@@ -15,6 +17,7 @@
             v-model="recipe.meal_type"
             :options="meal_type_options"
             class="mt-3"
+            button-variant="success"
           ></b-form-checkbox-group>
 
           <b-form-input
@@ -24,14 +27,12 @@
             size="lg"
             class="form-input--text-field-input"
           ></b-form-input>
-
           <b-form-input
             v-model="recipe.recipe_url"
             placeholder="Recipe link"
             size="lg"
             class="form-input--text-field-input"
           ></b-form-input>
-
           <b-form-input
             v-model="recipe.recipe_image_url"
             placeholder="Image link"
@@ -39,33 +40,75 @@
             class="form-input--text-field-input"
           ></b-form-input>
         </panel>
-      </div>
 
-      <div class="col-sm-6">
         <panel title="Recipe Notes">
           <b-form-textarea
             v-model="recipe.notes"
             size="lg"
             class="form-textarea--text-field-textarea"
             :rows="3"
+            placeholder="Recipe notes"
           ></b-form-textarea>
         </panel>
       </div>
-      <br>
-      <div>
-        <b-button size="lg" type="submit" variant="success">CREATE RECIPE</b-button>
+
+      <div class="col-sm-6">
+        <panel title="Subrecipe">
+          <b-form-input
+            v-model="subrecipe.title"
+            placeholder="Subrecipe title"
+            size="lg"
+            class="form-input--text-field-input"
+          ></b-form-input>
+
+          <b-form inline>
+            <ingredient></ingredient>
+            <b-button
+              size="lg"
+              type="submit"
+              variant="success"
+              @click="addIngredient()">
+              Add Ingredient
+            </b-button>
+          </b-form>
+
+          <b-form-input
+            v-model="subrecipe.prep_time"
+            placeholder="Prep time (mins)"
+            size="lg"
+            class="form-input--text-field-input"
+          ></b-form-input>
+          <b-form-input
+            v-model="subrecipe.cook_time"
+            placeholder="Cook time (mins)"
+            size="lg"
+            class="form-input--text-field-input"
+          ></b-form-input>
+        </panel>
       </div>
+      <br>
+      <b-col>
+        <b-button
+          size="lg"
+          type="submit"
+          variant="success"
+          align-self="centre">
+          CREATE RECIPE
+        </b-button>
+      </b-col>
     </div>
   </b-form>
 </template>
 
 <script>
 import Panel from '@/components/Panel'
+import Ingredient from '@/components/Ingredient'
 import RecipesService from '@/services/RecipesService'
 
 export default {
   components: {
-    Panel
+    Panel,
+    Ingredient
   },
   data () {
     return {
@@ -76,6 +119,11 @@ export default {
         recipe_image_url: null,
         recipe_url: null,
         notes: null
+      },
+      subrecipe: {
+        title: null,
+        prep_time: null,
+        cook_time: null
       },
       difficulty_options: [
         {value: 'Easy', text: 'Easy'},
@@ -99,6 +147,9 @@ export default {
       } catch (err) {
         console.log(err)
       }
+    },
+    addIngredient () {
+      console.log('MH: here')
     }
   }
 }

@@ -4,8 +4,8 @@
     header-bg-variant="success"
     header-text-variant="white"
     style="max-width: 70rem;"
-    align="center"
     body-class="text-center"
+    class="center"
   >
     <slot>
       No slot content defined

@@ -4,6 +4,7 @@
 
     <b-navbar-nav>
       <b-nav-item
+        v-if="$store.state.isUserLoggedIn"
         href="#"
         variant="sucess"
         @click="navigateTo({name: 'recipes'})">
@@ -11,7 +12,7 @@
       </b-nav-item>
     </b-navbar-nav>
 
-    <b-navbar-nav class="ms-auto">
+    <b-navbar-nav class="ml-auto" right>
       <b-nav-item
         v-if="!$store.state.isUserLoggedIn"
         href="#"

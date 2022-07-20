@@ -1,10 +1,11 @@
-import Api from '@/services/Api'
+/* eslint-disable */
+import Api from "@/services/Api";
 
 export default {
-  index () {
-    return Api().get('recipes')
+  index() {
+    return Api().get("recipes");
   },
-  post (recipe) {
-    return Api().post('recipes', recipe)
+  post(recipe) {
+    return Api().post("recipes", recipe);
   }
-}
+};
