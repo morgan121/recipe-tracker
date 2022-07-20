@@ -104,6 +104,7 @@
 import Panel from '@/components/Panel'
 import Ingredient from '@/components/Ingredient'
 import RecipesService from '@/services/RecipesService'
+import SubrecipesService from '@/services/SubrecipesService'
 
 export default {
   components: {
@@ -113,6 +114,7 @@ export default {
   data () {
     return {
       recipe: {
+        recipe_id: null,
         title: null,
         difficulty: null,
         meal_type: null,
@@ -121,6 +123,7 @@ export default {
         notes: null
       },
       subrecipe: {
+        recipe_id: null,
         title: null,
         prep_time: null,
         cook_time: null
@@ -143,6 +146,9 @@ export default {
       try {
         event.preventDefault()
         await RecipesService.post(this.recipe)
+        await RecipesService.post(this.recipe)
+
+        await SubrecipesService.post(this.subrecipe)
         this.$router.push({name: 'recipes'}).catch(() => {})
       } catch (err) {
         console.log(err)
