@@ -6,9 +6,27 @@
       {{recipe.title}} -
       {{recipe.meal_type}} -
       {{recipe.difficulty}}
+      <b-button
+        @click="navigateTo({
+          name: 'recipe',
+          params: {
+            recipeId: recipe.recipe_id
+            }
+          })"
+        size="sm"
+        type="submit"
+        variant="success">
+        VIEW
+      </b-button>
     </div>
     <br>
-    <b-button @click="navigateTo({name: 'recipes-create'})" size="create" type="submit" variant="success">NEW RECIPE</b-button>
+    <b-button
+      @click="navigateTo({name: 'recipes-create'})"
+      size="create"
+      type="submit"
+      variant="success">
+      NEW RECIPE
+    </b-button>
   </panel>
 </template>
 
