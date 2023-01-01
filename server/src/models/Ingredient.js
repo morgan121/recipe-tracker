@@ -1,18 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
-  const SubrecipeIngredient = sequelize.define("SubrecipeIngredient", {
+  const Ingredient = sequelize.define("Ingredient", {
     ingredient_id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    subrecipe_id: {
+    recipe_id: {
       type: DataTypes.INTEGER,
       foreignKey: true,
     },
     name: DataTypes.STRING,
     amount: DataTypes.FLOAT,
     unit: DataTypes.STRING,
+  },
+  {
+    classMethods: {
+      associate: function (models) {
+        Ingredient.belongsTo(models.Recipe, { foreignKey: "recipe_id" });
+      },
+    },
   });
 
-  return SubrecipeIngredient;
+  return Ingredient;
 };

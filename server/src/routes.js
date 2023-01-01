@@ -1,7 +1,7 @@
 const AuthenticationController = require("./controllers/AuthenticationController");
 const AuthenticationControllerPolicy = require("./policies/AuthenticationControllerPolicy");
 const RecipesController = require("./controllers/RecipesController");
-const SubrecipesController = require("./controllers/SubrecipesController");
+const IngredientsController = require("./controllers/IngredientsController");
 
 module.exports = (app) => {
   app.post(
@@ -17,6 +17,6 @@ module.exports = (app) => {
   app.get("/recipes/:recipeId", RecipesController.show);
   app.delete("/recipes/:recipeId", RecipesController.delete);
 
-  app.get("/subrecipes/:recipeId", SubrecipesController.index);
-  app.post("/subrecipes", SubrecipesController.post);
+  app.get("/ingredients/:recipeId", IngredientsController.index);
+  app.post("/ingredients", IngredientsController.post);
 };

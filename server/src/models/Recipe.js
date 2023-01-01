@@ -15,12 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       meal_type: DataTypes.STRING,
       recipe_image_url: DataTypes.STRING,
       recipe_url: DataTypes.STRING,
+      prep_time: DataTypes.INTEGER,
+      cook_time: DataTypes.INTEGER,
       notes: DataTypes.TEXT,
     },
     {
       classMethods: {
         associate: function (models) {
-          Recipe.hasMany(models.Subrecipe, { onDelete: "cascade" });
+          Recipe.hasMany(models.Ingredient, { onDelete: "cascade" });
         },
       },
     }

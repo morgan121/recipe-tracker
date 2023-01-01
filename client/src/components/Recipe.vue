@@ -2,16 +2,16 @@
   <panel title="Recipe Details">
     {{recipe.title}}
     <div
-      v-for="subrecipe in subrecipes"
-      :key="subrecipe.subrecipe_id">
-      {{subrecipe.title}}
+      v-for="ingredient in ingredients"
+      :key="ingredient.ingredient_id">
+      {{ingredient.name}}
     </div>
   </panel>
 </template>
 
 <script>
 import RecipesService from '@/services/RecipesService'
-import SubrecipesService from '@/services/SubrecipesService'
+import IngredientsService from '@/services/IngredientsService'
 import Panel from '@/components/Panel'
 
 export default {
@@ -21,14 +21,14 @@ export default {
   data () {
     return {
       recipe: {},
-      subrecipes: {}
+      ingredients: {}
     }
   },
   async mounted () {
     const recipeId = this.$store.state.route.params.recipeId
     this.recipe = (await RecipesService.show(recipeId)).data
 
-    this.subrecipes = (await SubrecipesService.index(recipeId)).data
+    this.ingredients = (await IngredientsService.index(recipeId)).data
   }
 }
 </script>
